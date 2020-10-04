@@ -16,10 +16,34 @@ function Home() {
         >
           Learn React
         </a>
+        <Child />
+        <footer onClick={() => alert('hhh')}>Hello, footer</footer>
       </header>
-      <footer>Hello, footer</footer>
     </div>
   )
+}
+
+class Child extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state.count = 0
+  }
+  plus(number) {
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        count: prevState.count + number,
+      }
+    })
+  }
+  render() {
+    return (
+      <div>
+        <div>{String(this.state.count)}</div>
+        <button onClick={() => this.plus(1)}>+</button>
+      </div>
+    )
+  }
 }
 
 export default Home
